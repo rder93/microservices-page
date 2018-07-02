@@ -1,0 +1,74 @@
+<div class="row centered">
+	<div class="col-md-6 col-md-offset-3">
+		<div class="panel panel-login">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-xs-12">
+						<a href="#" class="active" id="register-form-link">Crear cuenta</a>
+					</div>
+				</div>
+				<hr>
+			</div>
+			<div class="panel-body">
+
+				<div class="alert alert-danger alert-dismissible" role="alert" ng-if="message">
+				  	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				  	<strong>Aviso!</strong> {{message.error}}
+				</div>
+
+				<form id="register-form" ng-submit="user_register()" method="post" role="form">
+					<div class="form-group">
+						<input type="text" name="name" id="name" tabindex="1" class="form-control" placeholder="Name" value="" ng-model="form.name">
+					</div>
+					<div class="form-group">
+						<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email" value="" ng-model="form.email">
+					</div>
+					<div class="form-group">
+						<input type="text" name="phone" id="phone" tabindex="1" class="form-control" placeholder="Phone" value="" ng-model="form.phone">
+					</div>
+					<div class="form-group">
+						<input type="text" name="address" id="address" tabindex="1" class="form-control" placeholder="Address" value="" ng-model="form.address">
+					</div>
+					<div class="form-group">
+						<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" ng-model="form.password">
+					</div>
+					<div class="form-group">
+						<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+					</div>
+					<p class="text-danger" style="display: none;"><strong>La contraseña no coincide...</strong></p>
+					<p class="text-success" style="display: none;"><strong>Las contraseñas coinciden...</strong></p>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-6 col-sm-offset-3">
+								<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Registrarse">
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#confirm-password").keyup(function(event) {
+			var password = $("#password").val();
+			$(".text-danger").hide();
+            $(".text-success").hide();
+			if($(this).val() != password){
+				$(".text-danger").show();
+				return false;
+            }else{
+            	$(".text-danger").hide();
+            	$(".text-success").show();
+            	// $("#confirm-password").css({
+            	// 	'box-shadow': '0 0 3px 0px rgb(131, 226, 22)',
+            	// 	'border-color': 'green'
+            	// });
+            	return true;
+            }
+            
+		});
+	});
+</script>

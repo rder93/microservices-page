@@ -1,0 +1,79 @@
+<div ng-if="service" class="container service_box">
+	<div class="col-sm-12 textservice">
+		<div class="alert alert-success alert-dismissible" role="alert" ng-if="success">
+		  	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		  	<strong>Aviso!</strong> {{success}}
+		</div>
+		<div class="col-sm-7" style="text-align: center;border-right: 1px solid #c7c7c7;padding-bottom: 20px;">
+			<img class="imgservice" src="{{ foto + service.img }}" alt="" height="400">
+		</div>
+		<div class="col-sm-5">
+			<header>
+				<p style="font-size: 26px;">{{service.title}}</p>
+			</header>
+			<span style="font-size: 44px">$ {{service.price}}</span>
+			<div class="form-group" style="margin-bottom: 0px;margin-top: 15px;">
+				<span >Publicado por: {{service.user.name}}</span>
+			</div>
+			<div class="form-group">
+				<span >Contacto: +56{{service.user.phone}}</span>
+			</div>
+			
+			<div ng-if="!myService" class="" style="margin-top: 5%;text-align: center;">
+				<a href="javascript:void(0);" ng-click="hireservice(service._id)" class="btn btn-lg btn-primary btn-service" style="padding-left: 50px;padding-right: 50px;">Contratar</a>
+				<button type="button" class="btn btn-lg btn-warning btn-service" ng-click="openMessage()" style="padding-left: 50px;padding-right: 50px;">Mensaje</button>
+			</div>
+			<div ng-if="myService" class="" style="margin-top: 5%;text-align: center;">
+				<a href="javascript:void(0);" ui-sref="profile" class="btn btn-lg btn-primary btn-service" style="padding-left: 50px;padding-right: 50px;">Editar</a>
+			</div>
+		</div>
+	</div>
+	
+	<hr>
+	<div class="col-sm-12">
+		<!-- <div class="col-sm-7" style="border-top: 1px solid #c7c7c7;border-right: 1px solid #c7c7c7;"> -->
+			<div class="page-header">
+				<h3>Descripción del servicio</h3>
+			</div>
+			<!-- <div class="container"> -->
+				<p style="font-size: 18px;text-align: justify;">
+					{{service.description}}
+				</p>
+			<!-- </div> -->
+		<!-- </div> -->
+	</div>
+</div>
+
+<!-- line modal -->
+<div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="lineModalLabel">Mensaje para: {{service.user.name}}</h4>
+			</div>
+			<div class="modal-body">
+		
+	      		<div class="form-group">
+	        		<label for="">Asunto:</label>
+	        		<input type="text" class="form-control" id="inputSubject" placeholder="Asunto del mensaje" required ng-model="form.subject">
+	      		</div>
+	      		<div class="form-group">
+	        		<label for="">Texto:</label>
+	        		<textarea class="form-control" name="" id="" cols="30" rows="5" placeholder="Texto del mensaje" required ng-model="form.message"></textarea>
+	      		</div>
+
+			</div>
+			<div class="modal-footer">
+				<div class="btn-group btn-group-justified" role="group" aria-label="group button">
+					<div class="btn-group" role="group">
+						<button type="button" class="btn btn-danger" data-dismiss="modal" role="button">Cerrar</button>
+					</div>
+					<div class="btn-group" role="group">
+						<button type="button" class="btn btn-success btn-hover-green" role="button" ng-click="messageTo(service._id)">Enviar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+  	</div>
+</div>

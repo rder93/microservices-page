@@ -1,0 +1,50 @@
+<div class="col-md-12">
+	<div ui-view="navigation"></div>		
+	<div  class="col-sm-9">
+		<div class="panel panel-default" >
+		  	<div class="panel-heading panel-title-order">Registro de contrataciones recibidas</div>
+		  	<div class="panel-body">
+			  	<div class="alert alert-success alert-dismissible" role="alert" ng-if="success">
+				  	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				  	<strong>Aviso!</strong> {{success}}
+				</div>
+				<div class="alert alert-danger alert-dismissible" role="alert" ng-if="message">
+				  	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				  	<strong>Aviso!</strong> {{message.error}}
+				</div>
+		  		<div ng-if="orders" class="col-sm-12 panel-body-order" ng-repeat="order in orders">
+		  			<div class="col-sm-2 services-img">
+						<a ui-sref="viewservice({id: order._id})">
+							<img src="{{foto + order.service.img}}" alt="" width="110" height="100">
+						</a>
+					</div>
+					<div class="col-sm-7 services-txt">
+						<div class="form-group">
+							<label for="" class="control-label">Servicio:</label>
+							<span>{{order.service.title}}</span>
+						</div>
+						<div class="form-group">
+							<label for="" class="control-label">Precio:</label>
+							<span>{{order.service.price}}</span>
+						</div>
+						<div class="form-group">
+							<label for="" class="control-label">Publicado por:</label>
+							<span>{{order.service.user.name}}</span>
+						</div>
+					</div>
+					<div class="col-sm-3 services-opt">
+						<div class="btn-group-vertical">
+						  	<a href="#" class="btn btn-warning btn-service">Ver</a>
+						  	<a href="javascript:void(0);" class="btn btn-warning btn-service" ng-click="deleteOrder(order._id, order.service._id)">Cancelar</a>
+						  	<a href="javascript:void(0);" class="btn btn-primary btn-service">Contacto</a>
+						</div>
+					</div>
+		  		</div>
+		  		<div ng-if="orders.length == 0 || !orders" class="col-sm-12">
+					<h3>No hay ordenes registradas...</h3>
+				</div>
+		  	</div>
+		</div>
+		
+	</div>
+</div>

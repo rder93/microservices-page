@@ -1,0 +1,32 @@
+<div class="page-header">
+	<h2>Encuentra lo que necesitas</h2>
+</div>
+<div class="col-md-12">
+	<div ui-view="navigation"></div>
+	<div ng-if="empty" class="col-md-9">
+		<h1>404 error page</h1>
+		<h4>Connecting error...</h4>
+	</div>
+	<div ng-if="listservices" class="col-md-9" style="background-color: white;">
+		<div ng-if="listservices.length > 0" class="col-md-12 services-panel" ng-repeat="services in listservices">
+			<div class="col-md-3 services-img">
+				<a ui-sref="viewservice({id: services._id})">
+					<img src="{{foto + services.img}}" alt="" width="160" height="150">
+				</a>
+			</div>
+			<div class="col-md-6 services-txt">
+				<h4 class="services-title" style="margin-top: 0px;">
+					<a ui-sref="viewservice({id: services._id})">
+						<span>{{services.title}}</span>
+					</a>
+				</h4>
+				<h5>Fecha: {{services.created | date:'dd/MM/yyyy @ h:mma'}}</h5>
+				<span style="font-size: 24px;margin-bottom: 5px;">$ {{services.price}}</span>
+				<p>{{services.user[0].address}}</p>
+			</div>
+		</div>
+		<div ng-if="listservices.length == 0" class="col-md-12 services-panel">
+			<h3>No hay servicios publicados...</h3>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,34 @@
+<div class="col-sm-12">
+	<div ui-view="navigation"></div>		
+	<div  class="col-sm-9">
+		<div class="panel panel-default" >
+		  	<div class="panel-heading panel-title-order">Cuenta</div>
+		  	<div class="panel-body">
+			  	<div class="col-sm-12" >
+					<div class="col-sm-3 services-img">
+						<img src="./assets/img/profile.png" alt="" height="150">
+					</div>
+					<div class="col-sm-6 services-txt">
+						<div class="form-group">
+							<label class="control-label">Nombre completo:</label>
+							<span>{{usuario.name}}</span>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Correo Electronico</label>
+							<span>{{usuario.email}}</span>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Telefono:</label>
+							<span>+56 {{usuario.phone}}</span>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Direccion:</label>
+							<span>{{usuario.address}}</span>
+						</div>
+					</div>
+				</div>
+		  	</div>
+		</div>	
+	</div>
+</div>
+</div>

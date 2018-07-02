@@ -1,0 +1,37 @@
+<div class="content-header">
+    <h1>Lista de items</h1>
+</div>
+
+<div class="content">
+	<div class="col-md-12">
+		<a ui-sref="crearitems" class="btn btn-primary">Nuevo Item</a>
+	</div><br><br><br>
+	<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Codigo</th>
+					<th>Precio</th>
+					<th>Presentacion</th>
+					<th>Variedad</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in itemlist">
+					<td>{{item.name}}</td>
+					<td>{{item.code}}</td>
+					<td>{{item.price}}</td>
+					<td>{{item.presentation}}</td>
+					<td>{{item.variety_id.name}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		// $('.table').DataTable();
+	});
+</script>

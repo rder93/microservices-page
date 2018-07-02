@@ -1,0 +1,52 @@
+<div class="col-md-12">
+	<div ui-view="navigation"></div>		
+	<div  class="col-sm-9">
+		<div class="panel panel-default" >
+		  	<div class="panel-heading panel-title-order">Registro de publicaciones</div>
+		  	<div class="panel-body">
+			  	<div class="alert alert-success alert-dismissible" role="alert" ng-if="success">
+				  	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				  	<strong>Aviso!</strong> {{success}}
+				</div>
+				<div class="alert alert-danger alert-dismissible" role="alert" ng-if="message">
+				  	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				  	<strong>Aviso!</strong> {{message.error}}
+				</div>
+		  		<div ng-if="services" class="col-sm-12 panel-body-order" ng-repeat="service in services">
+		  			<div class="col-sm-2 services-img">
+						<img src="{{foto + service.img}}" alt="" width="110" height="100">
+					</div>
+					<div class="col-sm-7 services-txt">
+						<div class="form-group">
+							<label for="" class="control-label">Servicio:</label>
+							<span>{{service.title}}</span>
+						</div>
+						<div class="form-group">
+							<label for="" class="control-label">Precio:</label>
+							<span>{{service.price}}</span>
+						</div>
+						<div class="form-group">
+							<label for="" class="control-label">Vistas:</label>
+							<span>0</span>
+						</div>
+					</div>
+					<div class="col-sm-3 services-opt">
+						<div class="btn-group-vertical">
+						  	<a ui-sref="viewservice({id: service._id})" class="btn btn-primary btn-service">Ver</a>
+						  	<a href="javascript:void(0);" class="btn btn-warning btn-service">Editar</a>
+						  	<a href="javascript:void(0);" ng-click="deleteService(service._id)" class="btn btn-danger btn-service">Cancelar</a>
+						  	
+						</div>
+						<!-- <a ui-sref="viewservice({id: service._id})" class="btn btn-warning">Ver</a>
+						<a href="javascript:void(0);" ng-click="deleteService(service._id)" class="btn btn-danger">Cancelar</a>
+						<a href="javascript:void(0);" class="btn btn-primary">Contacto</a> -->
+						
+					</div>
+		  		</div>
+		  		<div ng-if="services.length == 0 || !services" class="col-sm-12">
+					<h3>No hay publicaciones registradas...</h3>
+				</div>
+		  	</div>
+		</div>
+	</div>
+</div>

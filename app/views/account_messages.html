@@ -1,0 +1,123 @@
+<div class="col-md-12">
+	<div ui-view="navigation"></div>		
+	<div  class="col-sm-9">
+		<div class="panel panel-default" >
+		  	<div class="panel-heading panel-title-order">Bandeja de mensajes</div>
+		  	<div class="panel-body" style="padding-top: 0px;">
+			  	<div class="alert alert-success alert-dismissible" role="alert" ng-if="success">
+				  	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				  	<strong>Aviso!</strong> {{success}}
+				</div>
+				<div class="alert alert-danger alert-dismissible" role="alert" ng-if="message">
+				  	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				  	<strong>Aviso!</strong> {{message.error}}
+				</div>
+		  		<div ng-if="messages" class="col-sm-12 panel-body-order" ng-repeat="message in messages">
+		  			<div class="col-sm-2 services-img">
+						<img src="{{foto + message.service.img}}" alt="" width="110" height="100">
+					</div>
+					<div class="col-sm-7 services-txt">
+						<div class="form-group" >
+							<label for="" class="control-label">Servicio:</label>
+							<span>{{message.service.title}}</span>
+						</div>
+						<div class="form-group" >
+							<label for="" class="control-label">Mensaje de:</label>
+							<span>{{message.postedBy.name}}</span>
+						</div>
+						<div class="form-group" >
+							<label for="" class="control-label">Asunto:</label>
+							<span>{{message.subject}}</span>
+						</div>
+					</div>
+					<div class="col-sm-3 services-opt">
+						<div class="btn-group-vertical">
+						  	<a href="javascript:void(0);" class="btn btn-warning" ng-click="seeMessage(message._id)">Ver Mensaje</a>
+						  	<a href="javascript:void(0);" ng-click="contact(message.postedBy._id)" class="btn btn-primary">Contacto</a>
+						</div>
+					</div>
+		  		</div>
+		  		<div ng-if="messages.length == 0 || !messages" class="col-sm-12">
+					<h3>No hay mensajes...</h3>
+				</div>
+		  	</div>
+		</div>
+		
+	</div>
+</div>
+
+<!-- line modal -->
+<div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="lineModalLabel">Mensaje de: {{mensaje.postedBy.name}}</h4>
+			</div>
+			<div class="modal-body">
+		
+	      		<div class="form-group">
+	        		<label for="">Asunto:</label>
+	        		<input type="text" class="form-control" id="inputSubject" placeholder="Asunto del mensaje" ng-model="mensaje.subject" disabled>
+	      		</div>
+	      		<div class="form-group">
+	        		<label for="">Texto:</label>
+	        		<textarea class="form-control" name="" id="" cols="30" rows="5" placeholder="Texto del mensaje" disabled ng-model="mensaje.message"></textarea>
+	      		</div>
+
+			</div>
+			<div class="modal-footer">
+				<div class="btn-group btn-group-justified" role="group" aria-label="group button">
+					<div class="btn-group" role="group">
+						<button type="button" class="btn btn-danger" data-dismiss="modal" role="button">Cerrar</button>
+					</div>
+					<div class="btn-group" role="group">
+						<button type="button" class="btn btn-success btn-hover-green" role="button" ng-click="messageTo(service._id)">Enviar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+  	</div>
+</div>
+
+<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="lineModalLabel">Contacto</h4>
+			</div>
+			<div class="modal-body">
+		
+	      		<div class="form-group">
+	        		<label for="">Nombre:</label>
+	        		<input type="text" class="form-control" id="inputSubject" placeholder="Asunto del mensaje" ng-model="contacto.name" disabled>
+	      		</div>
+	      		<div class="form-group">
+	        		<label for="">Email:</label>
+	        		<input type="text" class="form-control" id="inputSubject" placeholder="Asunto del mensaje" ng-model="contacto.email" disabled>
+	      		</div>
+	      		<div class="form-group">
+	        		<label for="">Telefono:</label>
+	        		<input type="text" class="form-control" id="inputSubject" placeholder="Asunto del mensaje" ng-model="contacto.phone" disabled>
+	      		</div>
+	      		<div class="form-group">
+	        		<label for="">Dirección:</label>
+	        		<input type="text" class="form-control" id="inputSubject" placeholder="Asunto del mensaje" ng-model="contacto.address" disabled>
+	      		</div>
+
+			</div>
+			<div class="modal-footer">
+				<div class="btn-group btn-group-justified" role="group" aria-label="group button">
+					<div class="btn-group" role="group">
+						<button type="button" class="btn btn-danger" data-dismiss="modal" role="button">Cerrar</button>
+					</div>
+					<div class="btn-group" role="group">
+						<button type="button" class="btn btn-success btn-hover-green" role="button" ng-click="messageTo(service._id)">Enviar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+  	</div>
+</div>
+
